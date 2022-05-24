@@ -38,6 +38,12 @@ createServer({
       return this.schema.all('transaction');
     });
 
+    this.get('/transactions/deposit', () => {
+      return this.schema
+        .all('transaction')
+        .filter((item: any) => item?.attrs?.type === 'deposit');
+    });
+
     this.post('/transactions', (schema, request) => {
       const data = JSON.parse(request.requestBody);
 
